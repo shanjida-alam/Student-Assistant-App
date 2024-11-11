@@ -48,4 +48,18 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // Android UI components
+    implementation ("androidx.appcompat:appcompat:1.4.2")
+    implementation ("com.google.android.material:material:1.6.1")
+    implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation ("androidx.cardview:cardview:1.0.0")
+
+    // ExoPlayer for video playback
+    implementation ("com.google.android.exoplayer:exoplayer:2.18.1")
+    implementation ("com.google.android.exoplayer:exoplayer-ui:2.18.1")
+
+    // Optional: Glide for image loading
+    implementation ("com.github.bumptech.glide:glide:4.13.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.13.0")
 }

@@ -7,4 +7,25 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <!-- Primary brand color -->
+    <color name="primary">#1976D2</color>         <!-- Material Blue 700 -->
+    <color name="primary_dark">#1565C0</color>    <!-- Material Blue 800 -->
+    <color name="primary_light">#42A5F5</color>   <!-- Material Blue 400 -->
+
+    <!-- Text colors -->
+    <color name="text_primary">#212121</color>    <!-- Dark gray for primary text -->
+    <color name="text_secondary">#757575</color>  <!-- Medium gray for secondary text -->
+
+    <!-- Common colors -->
+    <color name="gray_light">#F5F5F5</color>
+    <color name="gray_medium">#E0E0E0</color>
+
+    <!-- Accent colors for different features -->
+    <color name="todo_accent">#4CAF50</color>     <!-- Green -->
+    <color name="notes_accent">#FF9800</color>    <!-- Orange -->
+    <color name="finance_accent">#7C4DFF</color>  <!-- Deep Purple -->
+
+
 </resources>

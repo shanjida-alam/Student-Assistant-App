@@ -13,4 +13,9 @@
     <string name="menu_personalFinance">Personal Finance Management</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="home_features_title">Features</string>
+    <string name="home_feature_todo">To-Do List</string>
+    <string name="home_feature_note_taker">AI Note Taker</string>
+    <string name="home_feature_finance">Personal Finance Management</string>
 </resources>
