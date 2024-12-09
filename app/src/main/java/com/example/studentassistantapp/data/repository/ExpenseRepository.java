@@ -7,7 +7,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
-// Repository class
 public class ExpenseRepository {
     private static final String COLLECTION_EXPENSES = "expenses";
     private final FirebaseFirestore db;

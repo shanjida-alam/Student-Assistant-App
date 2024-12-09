@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-// ViewModel class
 public class PersonalFinanceViewModel extends ViewModel {
     private final ExpenseRepository repository;
     private final MutableLiveData<List<Expense>> expensesLiveData;
@@ -39,8 +38,10 @@ public class PersonalFinanceViewModel extends ViewModel {
         return errorLiveData;
     }
 
-    public void addExpense(String category, double amount, String description) {
+    public void addExpense(String category, double amount, String description, long timestamp) {
         Expense expense = new Expense(category, amount, description);
+        expense.setTimestamp(timestamp);
+
         repository.addExpense(expense)
                 .addOnSuccessListener(documentReference -> loadExpenses())
                 .addOnFailureListener(e -> errorLiveData.setValue("Failed to add expense: " + e.getMessage()));

@@ -1,103 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="match_parent">
 
-        <!-- Pie Chart for Expense Visualization -->
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/pieChart"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Add Expense Section -->
-        <com.google.android.material.card.MaterialCardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardElevation="4dp"
-            app:cardCornerRadius="8dp">
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <LinearLayout
+            <!-- Pie Chart for Expense Visualization -->
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Add Expense Section -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/addExpenseCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="8dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Add New Expense"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="8dp" />
-
-                <!-- Category Spinner -->
-                <Spinner
-                    android:id="@+id/categorySpinner"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp" />
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                <!-- Amount Input -->
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add New Expense"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etAmount"
+                    <!-- Category Spinner -->
+                    <Spinner
+                        android:id="@+id/categorySpinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Amount"
-                        android:inputType="numberDecimal" />
+                        android:layout_marginBottom="8dp" />
 
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <!-- Description Input -->
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etDescription"
+                    <!-- Amount Input -->
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Description" />
+                        android:layout_marginBottom="8dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etAmount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Amount"
+                            android:inputType="numberDecimal" />
 
-                <!-- Add Button -->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnAddExpense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Add Expense"
-                    android:padding="12dp"
-                    app:cornerRadius="8dp" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            </LinearLayout>
+                    <!-- Description Input -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        </com.google.android.material.card.MaterialCardView>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etDescription"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Description" />
 
-        <!-- Expenses List -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/expensesRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:paddingBottom="8dp" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-    </LinearLayout>
+                    <!-- Date Selection -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp">
 
-</androidx.core.widget.NestedScrollView>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="8dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etDate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Date"
+                                android:focusable="false"
+                                android:clickable="true"
+                                android:drawableEnd="@drawable/baseline_calendar_month_24" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etTime"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Time"
+                                android:focusable="false"
+                                android:clickable="true"
+                                android:drawableEnd="@drawable/baseline_access_time_24" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <!-- Add Button -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAddExpense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Add Expense"
+                        android:padding="12dp"
+                        app:cornerRadius="8dp" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Expenses List -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/expensesRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingBottom="8dp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Floating Action Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddExpense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/baseline_add_24"
+        app:fabSize="normal" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

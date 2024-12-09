@@ -30,7 +30,8 @@ public class ExpenseAdapter extends ListAdapter<Expense, ExpenseAdapter.ExpenseV
             public boolean areContentsTheSame(@NonNull Expense oldItem, @NonNull Expense newItem) {
                 return oldItem.getAmount() == newItem.getAmount() &&
                         oldItem.getCategory().equals(newItem.getCategory()) &&
-                        oldItem.getDescription().equals(newItem.getDescription());
+                        oldItem.getDescription().equals(newItem.getDescription()) &&
+                        oldItem.getTimestamp() == newItem.getTimestamp();
             }
         });
     }
@@ -53,21 +54,21 @@ public class ExpenseAdapter extends ListAdapter<Expense, ExpenseAdapter.ExpenseV
         private final TextView tvCategory;
         private final TextView tvAmount;
         private final TextView tvDescription;
-        private final TextView tvDate;
+        private final TextView tvSelectDate;
 
         public ExpenseViewHolder(@NonNull View itemView) {
             super(itemView);
             tvCategory = itemView.findViewById(R.id.tvCategory);
             tvAmount = itemView.findViewById(R.id.tvAmount);
             tvDescription = itemView.findViewById(R.id.tvDescription);
-            tvDate = itemView.findViewById(R.id.tvDate);
+            tvSelectDate = itemView.findViewById(R.id.tvDate);
         }
 
         public void bind(Expense expense) {
             tvCategory.setText(expense.getCategory());
             tvAmount.setText(String.format(Locale.getDefault(), "৳%.2f", expense.getAmount()));
             tvDescription.setText(expense.getDescription());
-            tvDate.setText(new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
+            tvSelectDate.setText(new SimpleDateFormat("dd MMM yyyy, hh:mm a", Locale.getDefault())
                     .format(new Date(expense.getTimestamp())));
         }
     }
