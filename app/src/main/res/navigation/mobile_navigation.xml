@@ -11,11 +11,11 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
-    <fragment
-        android:id="@+id/nav_todo"
-        android:name="com.example.studentassistantapp.ui.view.ToDoFragment"
-        android:label="@string/menu_todo"
-        tools:layout="@layout/fragment_to_do" />
+<!--    <fragment-->
+<!--        android:id="@+id/nav_todo"-->
+<!--        android:name="com.example.studentassistantapp.ui.view.ToDoFragment"-->
+<!--        android:label="@string/menu_todo"-->
+<!--        tools:layout="@layout/fragment_to_do"/>-->
 
     <fragment
         android:id="@+id/nav_notetaker"
@@ -28,4 +28,17 @@
         android:name="com.example.studentassistantapp.ui.view.PersonalFinanceManagementFragment"
         android:label="@string/menu_personalFinance"
         tools:layout="@layout/fragment_personal_finance_management" />
+
+    <fragment
+        android:id="@+id/nav_todo"
+        android:label="@string/menu_todo"
+        android:name="com.example.studentassistantapp.ui.view.ToDoFragment">
+        <action
+            android:id="@+id/action_toDoFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="com.example.studentassistantapp.ui.view.AddTaskFragment" />
 </navigation>

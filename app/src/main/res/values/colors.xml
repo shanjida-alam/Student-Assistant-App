@@ -27,5 +27,8 @@
     <color name="notes_accent">#FF9800</color>    <!-- Orange -->
     <color name="finance_accent">#7C4DFF</color>  <!-- Deep Purple -->
 
+    <color name="colorBackground">#F5F7FA</color>
+    <color name="colorPrimary">#4A90E2</color>
+
 
 </resources>

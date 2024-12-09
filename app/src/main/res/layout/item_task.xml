@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="@drawable/task_item_background"
+    android:layout_marginBottom="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="4dp">
+
+        <TextView
+            android:id="@+id/taskTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Task Title"
+            android:textSize="16sp"
+            android:textColor="#1E293B"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkBoxTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#64748B" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/taskDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Task description goes here..."
+        android:textSize="14sp"
+        android:textColor="#64748B" />
+
+    <TextView
+        android:id="@+id/taskDueDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Due: 2024-12-10"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="4dp" />
+</LinearLayout>
