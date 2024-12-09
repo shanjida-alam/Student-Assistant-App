@@ -29,6 +29,7 @@ public class ToDoFragment extends Fragment implements TaskAdapter.TaskCompletion
     private FragmentToDoBinding binding;
     private AddTaskViewModel taskViewModel;
     private TaskAdapter taskAdapter;
+    private TaskAdapter completedTaskAdapter;  // Added for completed tasks
 
     @Nullable
     @Override
@@ -96,9 +97,15 @@ public class ToDoFragment extends Fragment implements TaskAdapter.TaskCompletion
     }
 
     private void setupTaskRecyclerView() {
-        taskAdapter = new TaskAdapter(new ArrayList<>(), this); // 'this' refers to ToDoFragment, which implements TaskCompletionListener
+        // Setup active tasks RecyclerView with showCompletedTasks = false
+        taskAdapter = new TaskAdapter(new ArrayList<>(), this, false);
         binding.taskRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.taskRecyclerView.setAdapter(taskAdapter);
+
+        // Setup completed tasks RecyclerView with showCompletedTasks = true
+        completedTaskAdapter = new TaskAdapter(new ArrayList<>(), this, true);
+        binding.completedTaskRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.completedTaskRecyclerView.setAdapter(completedTaskAdapter);
     }
 
     private void observeTasks() {
@@ -106,9 +113,22 @@ public class ToDoFragment extends Fragment implements TaskAdapter.TaskCompletion
             // Log the number of tasks retrieved
             Log.d("ToDoFragment", "Tasks retrieved: " + (tasks != null ? tasks.size() : "null"));
 
-            if (tasks != null && !tasks.isEmpty()) {
-                // Update the adapter with the new list of tasks
-                taskAdapter.updateTasks(tasks);
+            if (tasks != null) {
+                List<AddTaskModel> activeTasks = new ArrayList<>();
+                List<AddTaskModel> completedTasks = new ArrayList<>();
+
+                // Separate tasks based on completion status
+                for (AddTaskModel task : tasks) {
+                    if (task.isCompleted()) {
+                        completedTasks.add(task);
+                    } else {
+                        activeTasks.add(task);
+                    }
+                }
+
+                // Update both adapters
+                taskAdapter.updateTasks(activeTasks);
+                completedTaskAdapter.updateTasks(completedTasks);
             }
         });
     }
