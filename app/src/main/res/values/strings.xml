@@ -19,11 +19,27 @@
     <string name="home_feature_note_taker">AI Note Taker</string>
     <string name="home_feature_finance">Personal Finance Management</string>
 
-    <string-array name="task_categories">
-        <item>Personal</item>
-        <item>Work</item>
-        <item>Home</item>
-        <item>Errands</item>
+
+    <string-array name="transaction_types">
+        <item>Income</item>
+        <item>Expense</item>
+    </string-array>
+
+    <string-array name="expense_categories">
+        <item>Food</item>
+        <item>Transportation</item>
+        <item>Books &amp; Supplies</item>
+        <item>Rent</item>
+        <item>Utilities</item>
+        <item>Entertainment</item>
+        <item>Healthcare</item>
+        <item>Clothing</item>
         <item>Other</item>
+    </string-array>
+
+    <string-array name="currencies">
+        <item>INR</item>
+        <item>USD</item>
+        <item>EUR</item>
     </string-array>
 </resources>
