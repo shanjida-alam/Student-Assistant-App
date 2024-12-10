@@ -1,4 +1,4 @@
-package com.example.studentassistantapp.ui.view;
+package com.example.studentassistantapp.ui.view.adapter;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;

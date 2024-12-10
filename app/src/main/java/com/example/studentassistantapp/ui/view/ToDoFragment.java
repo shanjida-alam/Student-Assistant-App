@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.studentassistantapp.R;
 import com.example.studentassistantapp.data.model.AddTaskModel;
 import com.example.studentassistantapp.databinding.FragmentToDoBinding;
-import com.example.studentassistantapp.ui.view.TaskAdapter;
+import com.example.studentassistantapp.ui.view.adapter.TaskAdapter;
 import com.example.studentassistantapp.ui.viewmodel.AddTaskViewModel;
 
 import java.util.ArrayList;

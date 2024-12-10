@@ -11,23 +11,23 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.studentassistantapp.R;
-import com.example.studentassistantapp.data.model.Expense;
+import com.example.studentassistantapp.data.model.ExpenseModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class ExpenseAdapter extends ListAdapter<Expense, ExpenseAdapter.ExpenseViewHolder> {
+public class ExpenseAdapter extends ListAdapter<ExpenseModel, ExpenseAdapter.ExpenseViewHolder> {
 
     public ExpenseAdapter() {
-        super(new DiffUtil.ItemCallback<Expense>() {
+        super(new DiffUtil.ItemCallback<ExpenseModel>() {
             @Override
-            public boolean areItemsTheSame(@NonNull Expense oldItem, @NonNull Expense newItem) {
+            public boolean areItemsTheSame(@NonNull ExpenseModel oldItem, @NonNull ExpenseModel newItem) {
                 return oldItem.getId().equals(newItem.getId());
             }
 
             @Override
-            public boolean areContentsTheSame(@NonNull Expense oldItem, @NonNull Expense newItem) {
+            public boolean areContentsTheSame(@NonNull ExpenseModel oldItem, @NonNull ExpenseModel newItem) {
                 return oldItem.getAmount() == newItem.getAmount() &&
                         oldItem.getCategory().equals(newItem.getCategory()) &&
                         oldItem.getDescription().equals(newItem.getDescription()) &&
@@ -46,7 +46,7 @@ public class ExpenseAdapter extends ListAdapter<Expense, ExpenseAdapter.ExpenseV
 
     @Override
     public void onBindViewHolder(@NonNull ExpenseViewHolder holder, int position) {
-        Expense expense = getItem(position);
+        ExpenseModel expense = getItem(position);
         holder.bind(expense);
     }
 
@@ -64,7 +64,7 @@ public class ExpenseAdapter extends ListAdapter<Expense, ExpenseAdapter.ExpenseV
             tvSelectDate = itemView.findViewById(R.id.tvDate);
         }
 
-        public void bind(Expense expense) {
+        public void bind(ExpenseModel expense) {
             tvCategory.setText(expense.getCategory());
             tvAmount.setText(String.format(Locale.getDefault(), "৳%.2f", expense.getAmount()));
             tvDescription.setText(expense.getDescription());

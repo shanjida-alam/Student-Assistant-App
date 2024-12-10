@@ -1,18 +1,18 @@
 package com.example.studentassistantapp.data.model;
 
 // Model class for Expense
-public class Expense {
+public class ExpenseModel {
     private String id;
     private String category;
     private double amount;
     private String description;
     private long timestamp;
 
-    public Expense() {
+    public ExpenseModel() {
         // Required empty constructor for Firestore
     }
 
-    public Expense(String category, double amount, String description) {
+    public ExpenseModel(String category, double amount, String description) {
         this.category = category;
         this.amount = amount;
         this.description = description;

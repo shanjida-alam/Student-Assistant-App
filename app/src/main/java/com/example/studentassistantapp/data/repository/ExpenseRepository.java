@@ -1,6 +1,6 @@
 package com.example.studentassistantapp.data.repository;
 
-import com.example.studentassistantapp.data.model.Expense;
+import com.example.studentassistantapp.data.model.ExpenseModel;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -15,7 +15,7 @@ public class ExpenseRepository {
         db = FirebaseFirestore.getInstance();
     }
 
-    public Task<DocumentReference> addExpense(Expense expense) {
+    public Task<DocumentReference> addExpense(ExpenseModel expense) {
         return db.collection(COLLECTION_EXPENSES).add(expense);
     }
 

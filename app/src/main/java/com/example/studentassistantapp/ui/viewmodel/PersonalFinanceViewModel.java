@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.studentassistantapp.data.model.Expense;
+import com.example.studentassistantapp.data.model.ExpenseModel;
 import com.example.studentassistantapp.data.repository.ExpenseRepository;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class PersonalFinanceViewModel extends ViewModel {
     private final ExpenseRepository repository;
-    private final MutableLiveData<List<Expense>> expensesLiveData;
+    private final MutableLiveData<List<ExpenseModel>> expensesLiveData;
     private final MutableLiveData<Map<String, Double>> categoryTotalsLiveData;
     private final MutableLiveData<String> errorLiveData;
 
@@ -26,7 +26,7 @@ public class PersonalFinanceViewModel extends ViewModel {
         errorLiveData = new MutableLiveData<>();
     }
 
-    public LiveData<List<Expense>> getExpenses() {
+    public LiveData<List<ExpenseModel>> getExpenses() {
         return expensesLiveData;
     }
 
@@ -39,7 +39,7 @@ public class PersonalFinanceViewModel extends ViewModel {
     }
 
     public void addExpense(String category, double amount, String description, long timestamp) {
-        Expense expense = new Expense(category, amount, description);
+        ExpenseModel expense = new ExpenseModel(category, amount, description);
         expense.setTimestamp(timestamp);
 
         repository.addExpense(expense)
@@ -50,9 +50,9 @@ public class PersonalFinanceViewModel extends ViewModel {
     public void loadExpenses() {
         repository.getAllExpenses()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
-                    List<Expense> expenses = new ArrayList<>();
+                    List<ExpenseModel> expenses = new ArrayList<>();
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                        Expense expense = document.toObject(Expense.class);
+                        ExpenseModel expense = document.toObject(ExpenseModel.class);
                         expense.setId(document.getId());
                         expenses.add(expense);
                     }
@@ -62,9 +62,9 @@ public class PersonalFinanceViewModel extends ViewModel {
                 .addOnFailureListener(e -> errorLiveData.setValue("Failed to load expenses: " + e.getMessage()));
     }
 
-    private void calculateCategoryTotals(List<Expense> expenses) {
+    private void calculateCategoryTotals(List<ExpenseModel> expenses) {
         Map<String, Double> categoryTotals = new HashMap<>();
-        for (Expense expense : expenses) {
+        for (ExpenseModel expense : expenses) {
             String category = expense.getCategory();
             double currentTotal = categoryTotals.getOrDefault(category, 0.0);
             categoryTotals.put(category, currentTotal + expense.getAmount());
