@@ -9,7 +9,7 @@ public class ExpenseModel {
     private long timestamp;
 
     public ExpenseModel() {
-        // Required empty constructor for Firestore
+
     }
 
     public ExpenseModel(String category, double amount, String description) {

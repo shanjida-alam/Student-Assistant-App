@@ -31,7 +31,7 @@
             android:id="@+id/checkBoxTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:buttonTint="#2563EB" />
+            android:buttonTint="@color/finance_accent" />
     </LinearLayout>
 
     <TextView
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:text="Task description goes here..."
         android:textSize="14sp"
-        android:textColor="#475569"
+        android:textColor="@color/black"
         android:lineSpacingExtra="4dp" />
 
     <LinearLayout
@@ -55,7 +55,7 @@
             android:layout_height="14dp"
             android:src="@drawable/baseline_calendar_month_24"
             android:layout_marginEnd="4dp"
-            app:tint="#2563EB" />
+            app:tint="@color/dark_blue" />
 
         <TextView
             android:id="@+id/taskDueDate"
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:text="Due: 2024-12-10"
             android:textSize="12sp"
-            android:textColor="#2563EB"
+            android:textColor="@color/finance_accent"
             android:fontFamily="sans-serif-medium" />
     </LinearLayout>
 </LinearLayout>

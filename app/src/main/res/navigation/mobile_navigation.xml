@@ -33,5 +33,6 @@
 
     <fragment
         android:id="@+id/addTaskFragment"
+        android:label="Add New Task"
         android:name="com.example.studentassistantapp.ui.view.AddTaskFragment" />
 </navigation>

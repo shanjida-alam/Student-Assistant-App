@@ -35,7 +35,7 @@
                         android:text="My Tasks"
                         android:textSize="28sp"
                         android:textStyle="bold"
-                        android:textColor="#0F172A"
+                        android:textColor="@color/dark_blue"
                         android:fontFamily="sans-serif-medium" />
                 </LinearLayout>
             </LinearLayout>
