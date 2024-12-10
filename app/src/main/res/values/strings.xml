@@ -9,8 +9,8 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_todo">TO DO</string>
-    <string name="menu_aiNoteTaker">AI Note Taker</string>
-    <string name="menu_personalFinance">Personal Finance Management</string>
+    <string name="menu_aiNoteTaker">Note Taker</string>
+    <string name="menu_personalFinance">Finance Management</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

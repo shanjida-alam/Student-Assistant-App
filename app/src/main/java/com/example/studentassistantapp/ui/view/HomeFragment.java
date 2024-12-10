@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -83,7 +84,7 @@ public class HomeFragment extends Fragment {
 
         List<FeatureItem> features = new ArrayList<>();
         features.add(new FeatureItem("To-Do List", R.drawable.ic_todo));
-        features.add(new FeatureItem("AI Notes", R.drawable.ic_note_taker));
+        features.add(new FeatureItem("Note Taker", R.drawable.ic_note_taker));
         features.add(new FeatureItem("Finance", R.drawable.ic_finance));
         features.add(new FeatureItem("Voice Notes", R.drawable.ic_voice));
 
@@ -166,8 +167,8 @@ public class HomeFragment extends Fragment {
     }
 
     // Feature Adapter class
-    private class FeatureAdapter extends RecyclerView.Adapter<FeatureAdapter.ViewHolder> {
-        private List<FeatureItem> features;
+    private static class FeatureAdapter extends RecyclerView.Adapter<FeatureAdapter.ViewHolder> {
+        private final List<FeatureItem> features;
 
         FeatureAdapter(List<FeatureItem> features) {
             this.features = features;
@@ -190,13 +191,16 @@ public class HomeFragment extends Fragment {
             holder.itemView.setOnClickListener(v -> {
                 switch (position) {
                     case 0: // Todo List
-                        // Navigate to Todo Fragment
+                        Navigation.findNavController(holder.itemView)
+                                .navigate(R.id.nav_todo);
                         break;
                     case 1: // Notes
-                        // Navigate to Notes Fragment
+                        Navigation.findNavController(holder.itemView)
+                                .navigate(R.id.nav_notetaker);
                         break;
                     case 2: // Finance
-                        // Navigate to Finance Fragment
+                        Navigation.findNavController(holder.itemView)
+                                .navigate(R.id.nav_personalFinanace);
                         break;
                     case 3: // Voice Notes
                         // Navigate to Voice Notes Fragment
@@ -204,6 +208,7 @@ public class HomeFragment extends Fragment {
                 }
             });
         }
+
 
         @Override
         public int getItemCount() {
