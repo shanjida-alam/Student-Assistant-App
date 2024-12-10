@@ -15,7 +15,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/dark_blue"
+            android:background="@color/finance_accent"
             app:popupTheme="@style/Theme.StudentAssistantApp.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>

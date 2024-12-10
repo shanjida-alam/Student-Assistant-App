@@ -1,7 +1,7 @@
 package com.example.studentassistantapp.ui.view;
 
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,7 +36,6 @@ public class HomeFragment extends Fragment {
     private MaterialCardView quoteCard, weatherWidget;
     private Handler handler;
     private FeatureAdapter featureAdapter;
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,60 +63,66 @@ public class HomeFragment extends Fragment {
         quoteCard = view.findViewById(R.id.quoteCard);
         weatherWidget = view.findViewById(R.id.weatherWidget);
 
-        // Set initial alpha to 0 for animated views
+        // Set initial states for animations
         welcomeText.setAlpha(0f);
+        welcomeText.setTranslationX(-50f);
         timeGreeting.setAlpha(0f);
-        quoteCard.setAlpha(0f);
+        timeGreeting.setTranslationX(-50f);
         weatherWidget.setAlpha(0f);
+        weatherWidget.setTranslationX(50f);
+        quoteCard.setAlpha(0f);
+        quoteCard.setTranslationY(50f);
     }
 
     private void setupAnimations() {
-        // Animate welcome text with fade and slight slide
-        welcomeText.setTranslationX(-50f);
+        // Welcome text animation
+        AnimatorSet welcomeSet = new AnimatorSet();
         ObjectAnimator welcomeFade = ObjectAnimator.ofFloat(welcomeText, "alpha", 0f, 1f);
         ObjectAnimator welcomeSlide = ObjectAnimator.ofFloat(welcomeText, "translationX", -50f, 0f);
-        welcomeFade.setDuration(1000);
-        welcomeSlide.setDuration(1000);
-        welcomeFade.setStartDelay(300);
-        welcomeSlide.setStartDelay(300);
-        welcomeFade.start();
-        welcomeSlide.start();
+        welcomeSet.playTogether(welcomeFade, welcomeSlide);
+        welcomeSet.setDuration(800);
+        welcomeSet.setInterpolator(new OvershootInterpolator(1.2f));
+        welcomeSet.setStartDelay(300);
 
-        // Animate greeting text
-        timeGreeting.setTranslationX(-50f);
+        // Greeting text animation
+        AnimatorSet greetingSet = new AnimatorSet();
         ObjectAnimator greetingFade = ObjectAnimator.ofFloat(timeGreeting, "alpha", 0f, 1f);
         ObjectAnimator greetingSlide = ObjectAnimator.ofFloat(timeGreeting, "translationX", -50f, 0f);
-        greetingFade.setDuration(1000);
-        greetingSlide.setDuration(1000);
-        greetingFade.setStartDelay(600);
-        greetingSlide.setStartDelay(600);
-        greetingFade.start();
-        greetingSlide.start();
+        greetingSet.playTogether(greetingFade, greetingSlide);
+        greetingSet.setDuration(800);
+        greetingSet.setInterpolator(new DecelerateInterpolator());
+        greetingSet.setStartDelay(500);
 
-        // Animate weather widget
-        weatherWidget.setTranslationX(50f);
-        weatherWidget.animate()
-                .alpha(1f)
-                .translationX(0f)
-                .setDuration(1000)
-                .setStartDelay(900)
-                .setInterpolator(new AccelerateDecelerateInterpolator())
-                .start();
+        // Weather widget animation
+        AnimatorSet weatherSet = new AnimatorSet();
+        ObjectAnimator weatherFade = ObjectAnimator.ofFloat(weatherWidget, "alpha", 0f, 1f);
+        ObjectAnimator weatherSlide = ObjectAnimator.ofFloat(weatherWidget, "translationX", 50f, 0f);
+        weatherSet.playTogether(weatherFade, weatherSlide);
+        weatherSet.setDuration(800);
+        weatherSet.setInterpolator(new DecelerateInterpolator());
+        weatherSet.setStartDelay(700);
 
-        // Animate quote card
-        quoteCard.setTranslationY(100f);
-        quoteCard.animate()
-                .alpha(1f)
-                .translationY(0f)
-                .setDuration(800)
-                .setStartDelay(1200)
-                .setInterpolator(new AccelerateDecelerateInterpolator())
-                .start();
+        // Quote card animation
+        AnimatorSet quoteSet = new AnimatorSet();
+        ObjectAnimator quoteFade = ObjectAnimator.ofFloat(quoteCard, "alpha", 0f, 1f);
+        ObjectAnimator quoteSlide = ObjectAnimator.ofFloat(quoteCard, "translationY", 50f, 0f);
+        quoteSet.playTogether(quoteFade, quoteSlide);
+        quoteSet.setDuration(800);
+        quoteSet.setInterpolator(new AccelerateDecelerateInterpolator());
+        quoteSet.setStartDelay(900);
 
-        // Setup RecyclerView animation
-        int resId = R.anim.layout_animation_fall_down;
-        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(requireContext(), resId);
-        featureGrid.setLayoutAnimation(animation);
+        // Start all animations
+        welcomeSet.start();
+        greetingSet.start();
+        weatherSet.start();
+        quoteSet.start();
+
+        // Weather icon continuous rotation
+        ObjectAnimator rotationAnimator = ObjectAnimator.ofFloat(weatherIcon, "rotation", 0f, 360f);
+        rotationAnimator.setDuration(20000);
+        rotationAnimator.setRepeatCount(ObjectAnimator.INFINITE);
+        rotationAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+        rotationAnimator.start();
     }
 
     private void setupFeatureGrid() {
@@ -125,10 +130,10 @@ public class HomeFragment extends Fragment {
         featureGrid.setLayoutManager(layoutManager);
 
         List<FeatureItem> features = new ArrayList<>();
-        features.add(new FeatureItem("To-Do List", R.drawable.ic_todo, "Manage your tasks"));
-        features.add(new FeatureItem("Note Taker", R.drawable.ic_note_taker, "Create and organize notes"));
-        features.add(new FeatureItem("Finance", R.drawable.ic_finance, "Track your expenses"));
-        features.add(new FeatureItem("Voice Notes", R.drawable.ic_voice, "Record voice memos"));
+        features.add(new FeatureItem("To-Do List", R.drawable.ic_todo));
+        features.add(new FeatureItem("Note Taker", R.drawable.ic_note_taker));
+        features.add(new FeatureItem("Finance", R.drawable.ic_finance));
+        features.add(new FeatureItem("Voice Notes", R.drawable.ic_voice));
 
         featureAdapter = new FeatureAdapter(features, this::handleFeatureClick);
         featureGrid.setAdapter(featureAdapter);
@@ -190,7 +195,6 @@ public class HomeFragment extends Fragment {
         Random random = new Random();
         String selectedQuote = quotes[random.nextInt(quotes.length)];
 
-        // Animate quote text change
         dailyQuoteText.setAlpha(0f);
         dailyQuoteText.setText(selectedQuote);
         dailyQuoteText.animate()
@@ -210,13 +214,6 @@ public class HomeFragment extends Fragment {
             weatherIcon.setImageResource(R.drawable.ic_weather_night);
             temperatureText.setText("20°C");
         }
-
-        // Add subtle rotation animation to weather icon
-        ObjectAnimator rotation = ObjectAnimator.ofFloat(weatherIcon, "rotation", 0f, 360f);
-        rotation.setDuration(20000);
-        rotation.setRepeatCount(ObjectAnimator.INFINITE);
-        rotation.setInterpolator(new AccelerateDecelerateInterpolator());
-        rotation.start();
     }
 
     private void startBackgroundUpdates() {
@@ -244,12 +241,10 @@ public class HomeFragment extends Fragment {
     private static class FeatureItem {
         String title;
         int iconResource;
-        String description;
 
-        FeatureItem(String title, int iconResource, String description) {
+        FeatureItem(String title, int iconResource) {
             this.title = title;
             this.iconResource = iconResource;
-            this.description = description;
         }
     }
 
@@ -275,12 +270,26 @@ public class HomeFragment extends Fragment {
             return new ViewHolder(view);
         }
 
-        @SuppressLint("ClickableViewAccessibility")
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             FeatureItem item = features.get(position);
             holder.titleText.setText(item.title);
             holder.iconImage.setImageResource(item.iconResource);
+
+            // Initialize view properties
+            holder.itemView.setAlpha(0f);
+            holder.itemView.setScaleX(0.8f);
+            holder.itemView.setScaleY(0.8f);
+
+            // Create animation
+            holder.itemView.animate()
+                    .alpha(1f)
+                    .scaleX(1f)
+                    .scaleY(1f)
+                    .setDuration(500)
+                    .setStartDelay(position * 100L)
+                    .setInterpolator(new OvershootInterpolator(1.2f))
+                    .start();
 
             // Add click animation
             holder.itemView.setOnClickListener(v -> {
@@ -293,37 +302,11 @@ public class HomeFragment extends Fragment {
                                     .scaleX(1f)
                                     .scaleY(1f)
                                     .setDuration(100)
+                                    .withEndAction(() -> clickListener.onFeatureClick(position))
                                     .start();
-                            clickListener.onFeatureClick(position);
                         })
                         .start();
             });
-
-            // Add hover effect
-            holder.itemView.setOnTouchListener((v, event) -> {
-                switch (event.getAction()) {
-                    case android.view.MotionEvent.ACTION_DOWN:
-                        holder.itemView.setAlpha(0.8f);
-                        break;
-                    case android.view.MotionEvent.ACTION_UP:
-                    case android.view.MotionEvent.ACTION_CANCEL:
-                        holder.itemView.setAlpha(1.0f);
-                        break;
-                }
-                return false;
-            });
-        }
-
-        @Override
-        public void onViewAttachedToWindow(@NonNull ViewHolder holder) {
-            super.onViewAttachedToWindow(holder);
-            // Add fade-in animation when items are attached
-            holder.itemView.setAlpha(0f);
-            holder.itemView.animate()
-                    .alpha(1f)
-                    .setDuration(500)
-                    .setStartDelay(holder.getAdapterPosition() * 100L)
-                    .start();
         }
 
         @Override

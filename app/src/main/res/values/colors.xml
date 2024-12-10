@@ -54,5 +54,7 @@
     <color name="white_70">#B3FFFFFF</color>
     <color name="weather_card_bg">#33FFFFFF</color>
 
+    <color name="icon_background">#F5F3FF</color>
+
 
 </resources>
