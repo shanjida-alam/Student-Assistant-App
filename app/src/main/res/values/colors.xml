@@ -18,13 +18,10 @@
 
 
     <!-- Primary brand color -->
-    <color name="primary">#1976D2</color>         <!-- Material Blue 700 -->
-    <color name="primary_dark">#1565C0</color>    <!-- Material Blue 800 -->
-    <color name="primary_light">#42A5F5</color>   <!-- Material Blue 400 -->
+<!--    <color name="primary">#1976D2</color>         &lt;!&ndash; Material Blue 700 &ndash;&gt;-->
+<!--    <color name="primary_dark">#1565C0</color>    &lt;!&ndash; Material Blue 800 &ndash;&gt;-->
+<!--    <color name="primary_light">#42A5F5</color>   &lt;!&ndash; Material Blue 400 &ndash;&gt;-->
 
-    <!-- Text colors -->
-    <color name="text_primary">#212121</color>    <!-- Dark gray for primary text -->
-    <color name="text_secondary">#757575</color>  <!-- Medium gray for secondary text -->
 
     <!-- Common colors -->
     <color name="gray_light">#F5F5F5</color>
@@ -41,6 +38,21 @@
     <color name="income_green">#4CAF50</color>
     <color name="expense_red">#F44336</color>
     <color name="overdue_red_light">#1AF44336</color>
+
+
+    <color name="accent">#FF4081</color>
+
+
+
+    <color name="primary">#6C63FF</color>
+    <color name="primary_dark">#5A52E0</color>
+    <color name="background">#F8F9FD</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="card_stroke">#E0E0E0</color>
+    <color name="text_primary">#2C3E50</color>
+    <color name="text_secondary">#546E7A</color>
+    <color name="white_70">#B3FFFFFF</color>
+    <color name="weather_card_bg">#33FFFFFF</color>
 
 
 </resources>
